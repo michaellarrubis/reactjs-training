@@ -1,20 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { getJoke } from '../redux/modules/joke/jokeAction';
 
 const Category = () => {
     const { categoryName } = useParams();
-    const [joke, setJoke] = useState('');
+    const dispatch = useDispatch();
+    const joke = useSelector(state => state.joke.joke);
 
     useEffect(() => {
-        handleLoadJoke(categoryName);
-    }, [categoryName])
-
-    const handleLoadJoke = async(category) => {
-        setJoke('Loading . . .');
-        const { data } = await axios(`https://api.chucknorris.io/jokes/random?category=${category}`);
-        setJoke(data.value);
-    }
+        dispatch(getJoke(categoryName));
+    }, [dispatch, categoryName]);
 
     return (
         <div className="category page">

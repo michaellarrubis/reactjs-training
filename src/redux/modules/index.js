@@ -1,9 +1,11 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
-import category from './category/categoryReducer'
+import category from './category/categoryReducer';
+import joke from './joke/jokeReducer';
 
 const reducer = combineReducers({
-  category
+  category,
+  joke
 });
 
-export default reducer
+export default reducer;
