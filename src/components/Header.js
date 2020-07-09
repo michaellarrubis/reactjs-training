@@ -5,7 +5,6 @@ const Header = ({ title }) => {
     const { pathname } = useLocation();
 
     const path = pathname.split('/');
-    console.log(path[1] ? 'true' : 'fasel')
     const locationTop = path.length > 1 && path[1] ? path[2] : 'top';
 
     const handleTitleDisplay = title ? title : locationTop;

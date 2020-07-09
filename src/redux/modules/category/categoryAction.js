@@ -1,24 +1,13 @@
-import { GET_CATEGORIES } from './categoryTypes';
+import axios from 'axios';
+import { SET_CATEGORIES } from './categoryTypes';
 
-export function getCategories() {
-    return { 
-        type: GET_CATEGORIES,
-        payload: [
-            "animal",
-            "career",
-            "celebrity",
-            "dev",
-            "explicit",
-            "fashion",
-            "food",
-            "history",
-            "money",
-            "movie",
-            "music",
-            "political",
-            "religion",
-            "science",
-            "sport",
-            "travel"
-        ] };
+export function setCategories(data){
+    return { type: SET_CATEGORIES, payload: data }
+}
+
+export function getCategories(){
+    return async function(dispatch) {
+        const { data } = await axios('https://api.chucknorris.io/jokes/categories');
+        dispatch(setCategories(data));
+    }
 }
